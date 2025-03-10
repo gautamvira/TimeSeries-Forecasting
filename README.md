@@ -15,7 +15,7 @@
 ## ARIMA
 It was observed that using an ARIMA model was not feasible as the optimal parameters could not be determined automatically efficiently; upon using the automatically calculated parameters, the model failed to converge. Furthermore, in an attempt to manually select the parameters using the Autocorrelation Function plot, Partial Autocorrelation Function plot, and the Augmented Dickey-Fuller Test, the resultant model seemed very similar to the previously tested ARIMA model. Also, using an ARIMA model for long sequences may not be ideal. Additionally, any other data (e.g. weather data) which may be relevant cannot be used.
 
-## LSTM
+## LSTM (Predicting Future Values)
 An LSTM was trained to predict the next 160 time steps based on the previous 160 time steps. The value of 160 steps is chosen to allow the model to make predictions at 8:00AM for the same day (64 remaining steps) as well as the next day (96 steps).  
 An additional feature was added to the dataset for the LSTM, which is, the load value for the same day of the week in the previous week. The data was scaled using a Min-Max scaler before inputting it to the neural network. Overall, the performance of the LSTM was mediocre even after several attempts at hyperparameter tuning.  
 
@@ -37,6 +37,10 @@ A feature importance analysis after fitting the model shows that the features en
 - MSE: ≈1022
 - RMSE: ≈32
 - MAPE: 6.2%
+
+## LSTM (Same data as the Regressor)
+
+Training an LSTM with using the forecasted values along with historic load values to predict the load for the current timestamp delivers better results than using an LSTM to predict future 160 values based on previous 160 inputs. The LSTM is used to predict sequences of 96 timestamps (for one whole day) based on the forecasted weather values and historic load values (48H ago and 7 days ago). However, the Gradient Boosting Regressor appears to have performed better again based on the evaluation metrics. 
 
 ## Conclusion
 Three types of models were implemented for the task of load prediction: statistical time series model (ARIMA), Regression model (GBR), and neural network (LSTM). The results suggest that using a regression approach was not only the most efficient but also the most accurate.
