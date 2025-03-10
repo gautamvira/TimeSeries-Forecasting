@@ -42,5 +42,10 @@ A feature importance analysis after fitting the model shows that the features en
 
 Training an LSTM with using the forecasted values along with historic load values to predict the load for the current timestamp delivers better results than using an LSTM to predict future 160 values based on previous 160 inputs. The LSTM is used to predict sequences of 96 timestamps (for one whole day) based on the forecasted weather values and historic load values (48H ago and 7 days ago). However, the Gradient Boosting Regressor appears to have performed better again based on the evaluation metrics. 
 
+### Results
+- MSE: 1310 
+- RMSE: 36.2
+- MAPE: 6.8%
+
 ## Conclusion
 Three types of models were implemented for the task of load prediction: statistical time series model (ARIMA), Regression model (GBR), and neural network (LSTM). The results suggest that using a regression approach was not only the most efficient but also the most accurate.
